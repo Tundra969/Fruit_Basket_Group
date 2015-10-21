@@ -1,40 +1,58 @@
 $(document).ready(function(){
 	addFruit("Apple", 1.50);
-	addFruit("banana", 3.50);
+	addFruit("Banana", 3.50);
+
+	$("#fruitContainer").on('click', '.buyfruit', function(){
+		basket.push(this.();
+		console.log(basket);
+	});
 
 	setInterval(function(){
 		for (var i=0;i<fruitsArray.length;i++){
 			generatePrice(fruitsArray[i]);
 		}
-		console.log(fruitsArray);
+		//console.log(fruitsArray);
 		updateDom();
 	}, 1000);
+
+
 	
-	//console.log(fruitsArray);
+	//console.log(basket);
 	fruitOnDom();
 });
 
 
 var fruitsArray = [];
+var basket = [];
 
+//builds one fruit object
 function MakeFruit(fruitName, fruitPrice){
 	this.name = fruitName;
 	this.price = fruitPrice;
 }
 
+//takes a fruit object (made by Make Fruit) and pushes to fruitsArray, and populates basket array
 function addFruit(fruitName, fruitPrice){
+	var temp = [];
+
+	// var arrayName = temp.name;
+	// arrayName = [];
+
 	fruitsArray.push(new MakeFruit(fruitName, fruitPrice));
+	basket.push(temp);
+	console.log("This is the add Fruit version: ", basket);
 }
 
 
 
 function fruitOnDom(){
 	for (var i = 0; i <fruitsArray.length; i++){
-		$("#fruitContainer").append("<div class='fruit' id='" + fruitsArray[i].name + "'>fruitsArray[i].name</div>");
+		$("#fruitContainer").append("<div class='fruit' id='" + fruitsArray[i].name + "'>" + fruitsArray[i].name + "</div>");
 		var $el = $("#fruitContainer").children().last();
 
 		$el.append("<div class='fruitprice'>" + fruitsArray[i].price +": " + fruitsArray[i].name + "</div>");
-		console.log(fruitsArray[i].price);
+		// console.log(fruitsArray[i].price);
+		$el.append("<div class='btn btn-primary buyfruit'>Purchase</div");
 	}
 }
 

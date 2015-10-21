@@ -3,7 +3,8 @@ $(document).ready(function(){
 	addFruit("Banana", 3.50);
 
 	$("#fruitContainer").on('click', '.buyfruit', function(){
-		basket.push(this.();
+		basket[$(this).parent().data("index")]
+		.push($(this).parent().find('fruitPrice').text());
 		console.log(basket);
 	});
 
@@ -47,7 +48,7 @@ function addFruit(fruitName, fruitPrice){
 
 function fruitOnDom(){
 	for (var i = 0; i <fruitsArray.length; i++){
-		$("#fruitContainer").append("<div class='fruit' id='" + fruitsArray[i].name + "'>" + fruitsArray[i].name + "</div>");
+		$("#fruitContainer").append("<div class='fruit' data-index='" + i + "'id='" + fruitsArray[i].name + "'>" + fruitsArray[i].name + "</div>");
 		var $el = $("#fruitContainer").children().last();
 
 		$el.append("<div class='fruitprice'>" + fruitsArray[i].price +": " + fruitsArray[i].name + "</div>");
